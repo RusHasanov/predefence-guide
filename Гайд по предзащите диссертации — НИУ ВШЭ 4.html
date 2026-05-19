@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://iridescent-lebkuchen-012bd3.netlify.app/ -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гайд по предзащите диссертации — НИУ ВШЭ</title>
+<link href="./Гайд по предзащите диссертации — НИУ ВШЭ 4_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --blue: #003087;
+    --blue-mid: #1a4da0;
+    --blue-light: #e8eef8;
+    --gold: #c8973a;
+    --gold-light: #f9f0e0;
+    --text: #1a1a2e;
+    --muted: #5a6480;
+    --bg: #f5f6fa;
+    --white: #ffffff;
+    --border: #d0d8e8;
+    --green: #1a7a4a;
+    --green-light: #e6f4ed;
+    --red: #a0261a;
+    --red-light: #fbeae8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  /* HEADER */
+  .hero {
+    background: var(--blue);
+    color: white;
+    padding: 60px 0 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 30px,
+      rgba(255,255,255,0.03) 30px,
+      rgba(255,255,255,0.03) 31px
+    );
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+  }
+  .hero-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 18px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.75);
+    max-width: 580px;
+    font-weight: 300;
+  }
+  .hero-tags {
+    margin-top: 28px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.5px;
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 52px 0 24px;
+  }
+  .section-num {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--blue);
+    line-height: 1.2;
+  }
+  .section-intro {
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 300;
+    padding-left: 52px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 14px;
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 20px rgba(0,48,135,0.08); }
+
+  .card-title {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--text);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .card p, .card li {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 300;
+  }
+  .card ul {
+    list-style: none;
+    margin-top: 8px;
+  }
+  .card ul li {
+    padding: 4px 0 4px 18px;
+    position: relative;
+  }
+  .card ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  /* REQUIREMENT BADGE */
+  .req-badge {
+    display: inline-block;
+    background: var(--gold-light);
+    border: 1px solid var(--gold);
+    color: #8a5c00;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
+
+  /* NOTICE BOXES */
+  .notice {
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .notice-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .notice-body { flex: 1; }
+  .notice-body strong { display: block; margin-bottom: 4px; font-size: 14px; }
+  .notice-body p { font-size: 14px; font-weight: 300; }
+
+  .notice-warn {
+    background: #fff8e6;
+    border: 1px solid #e8c66a;
+  }
+  .notice-info {
+    background: var(--blue-light);
+    border: 1px solid #b0c4e8;
+  }
+  .notice-ok {
+    background: var(--green-light);
+    border: 1px solid #8ed4b0;
+  }
+  .notice-red {
+    background: var(--red-light);
+    border: 1px solid #e8a09a;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+    border-left: 3px solid var(--border);
+    margin-top: 8px;
+  }
+  .timeline-item {
+    position: relative;
+    padding: 0 0 28px 24px;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute;
+    left: -40px;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 3px solid var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .timeline-dot.gold { border-color: var(--gold); }
+  .timeline-dot.green { border-color: var(--green); }
+  .timeline-time {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .timeline-title {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+  .timeline-desc {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* CONTACT CARDS */
+  .contacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .contact-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .contact-role {
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .contact-name {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .contact-email {
+    font-size: 13px;
+    color: var(--blue-mid);
+    font-family: 'IBM Plex Mono', monospace;
+    word-break: break-all;
+  }
+
+  /* AGENDA TABLE */
+  .agenda {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .agenda-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .agenda-row:last-child { border-bottom: none; }
+  .agenda-row:first-child .agenda-time { background: var(--blue); color: white; }
+  .agenda-row:first-child .agenda-content { background: var(--blue); color: rgba(255,255,255,0.8); font-weight: 500; }
+  .agenda-time {
+    padding: 14px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    background: var(--blue-light);
+    color: var(--blue);
+    border-right: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+  }
+  .agenda-content {
+    padding: 14px 18px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+  }
+  .agenda-content strong { font-weight: 500; display: block; margin-bottom: 2px; }
+
+  /* CHECKLIST */
+  .checklist {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-box {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .check-label { font-size: 14px; font-weight: 400; }
+  .check-sub { font-size: 13px; color: var(--muted); font-weight: 300; margin-top: 3px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--blue);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 28px 32px;
+    font-size: 13px;
+    font-weight: 300;
+  }
+  footer a { color: rgba(255,255,255,0.8); }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0 0;
+  }
+
+  @media (max-width: 600px) {
+    .agenda-row { grid-template-columns: 60px 1fr; }
+    .contacts-grid { grid-template-columns: 1fr; }
+  }
+</style>
+<style>.troywell-serp-hkhJqI {
+  width: max-content;
+  display: flex;
+  z-index: 999999999999;
+  box-sizing: border-box;
+  cursor: default;
+  margin-bottom: 4px;
+  border-radius: 12px;
+  height: 40px;
+  padding: 4px 12px 4px 4px;
+  background: #fff;
+}
+.troywell-serp__container-PWkOSj {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.troywell-serp__subtitle-ZOhJGg {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #1D2939;
+}
+.troywell-serp__subtitle_blue-B6S7O0 {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #3A70F7;
+}
+.troywell-serp__logo-HBqGnZ {
+  padding: 4px 0px;
+}
+.troywell-serp__diamond-2nuCqU {
+  width: 18px;
+  height: 18px;
+}
+.troywell-serp__count-bEX2jp {
+  padding: 4px 8px;
+  gap: 10px;
+  background: #E4EDFE;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #3A70F7;
+}
+</style><style>.troywell-serp-hkhJqI {
+  width: max-content;
+  display: flex;
+  z-index: 999999999999;
+  box-sizing: border-box;
+  cursor: default;
+  margin-bottom: 4px;
+  border-radius: 12px;
+  height: 40px;
+  padding: 4px 12px 4px 4px;
+  background: #fff;
+}
+.troywell-serp__container-PWkOSj {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.troywell-serp__subtitle-ZOhJGg {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #1D2939;
+}
+.troywell-serp__subtitle_blue-B6S7O0 {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #3A70F7;
+}
+.troywell-serp__logo-HBqGnZ {
+  padding: 4px 0px;
+}
+.troywell-serp__diamond-2nuCqU {
+  width: 18px;
+  height: 18px;
+}
+.troywell-serp__count-bEX2jp {
+  padding: 4px 8px;
+  gap: 10px;
+  background: #E4EDFE;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #3A70F7;
+}
+</style><style>.troywell-serp-hkhJqI {
+  width: max-content;
+  display: flex;
+  z-index: 999999999999;
+  box-sizing: border-box;
+  cursor: default;
+  margin-bottom: 4px;
+  border-radius: 12px;
+  height: 40px;
+  padding: 4px 12px 4px 4px;
+  background: #fff;
+}
+.troywell-serp__container-PWkOSj {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.troywell-serp__subtitle-ZOhJGg {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #1D2939;
+}
+.troywell-serp__subtitle_blue-B6S7O0 {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #3A70F7;
+}
+.troywell-serp__logo-HBqGnZ {
+  padding: 4px 0px;
+}
+.troywell-serp__diamond-2nuCqU {
+  width: 18px;
+  height: 18px;
+}
+.troywell-serp__count-bEX2jp {
+  padding: 4px 8px;
+  gap: 10px;
+  background: #E4EDFE;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #3A70F7;
+}
+</style><style>.troywell-serp-hkhJqI {
+  width: max-content;
+  display: flex;
+  z-index: 999999999999;
+  box-sizing: border-box;
+  cursor: default;
+  margin-bottom: 4px;
+  border-radius: 12px;
+  height: 40px;
+  padding: 4px 12px 4px 4px;
+  background: #fff;
+}
+.troywell-serp__container-PWkOSj {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.troywell-serp__subtitle-ZOhJGg {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #1D2939;
+}
+.troywell-serp__subtitle_blue-B6S7O0 {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #3A70F7;
+}
+.troywell-serp__logo-HBqGnZ {
+  padding: 4px 0px;
+}
+.troywell-serp__diamond-2nuCqU {
+  width: 18px;
+  height: 18px;
+}
+.troywell-serp__count-bEX2jp {
+  padding: 4px 8px;
+  gap: 10px;
+  background: #E4EDFE;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #3A70F7;
+}
+</style><style>.troywell-serp-hkhJqI {
+  width: max-content;
+  display: flex;
+  z-index: 999999999999;
+  box-sizing: border-box;
+  cursor: default;
+  margin-bottom: 4px;
+  border-radius: 12px;
+  height: 40px;
+  padding: 4px 12px 4px 4px;
+  background: #fff;
+}
+.troywell-serp__container-PWkOSj {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.troywell-serp__subtitle-ZOhJGg {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #1D2939;
+}
+.troywell-serp__subtitle_blue-B6S7O0 {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #3A70F7;
+}
+.troywell-serp__logo-HBqGnZ {
+  padding: 4px 0px;
+}
+.troywell-serp__diamond-2nuCqU {
+  width: 18px;
+  height: 18px;
+}
+.troywell-serp__count-bEX2jp {
+  padding: 4px 8px;
+  gap: 10px;
+  background: #E4EDFE;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #3A70F7;
+}
+</style><style>.troywell-serp-hkhJqI {
+  width: max-content;
+  display: flex;
+  z-index: 999999999999;
+  box-sizing: border-box;
+  cursor: default;
+  margin-bottom: 4px;
+  border-radius: 12px;
+  height: 40px;
+  padding: 4px 12px 4px 4px;
+  background: #fff;
+}
+.troywell-serp__container-PWkOSj {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.troywell-serp__subtitle-ZOhJGg {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #1D2939;
+}
+.troywell-serp__subtitle_blue-B6S7O0 {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #3A70F7;
+}
+.troywell-serp__logo-HBqGnZ {
+  padding: 4px 0px;
+}
+.troywell-serp__diamond-2nuCqU {
+  width: 18px;
+  height: 18px;
+}
+.troywell-serp__count-bEX2jp {
+  padding: 4px 8px;
+  gap: 10px;
+  background: #E4EDFE;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #3A70F7;
+}
+</style></head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">НИУ ВШЭ</div>
+    <h1>Гайд по процедуре<br><span>предзащиты</span> диссертации</h1>
+    <p class="hero-sub">Полное руководство: от требований к допуску до оформления документов после заседания</p>
+    <div class="hero-tags">
+      <span class="tag">кандидатские</span>
+      <span class="tag">офлайн / онлайн / смешанный формат</span>
+      <span class="tag">аспирантская школа ВШЭ</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- БЛОК 1: ТРЕБОВАНИЯ К ДОПУСКУ -->
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title">Что нужно иметь для допуска к предзащите</div>
+  </div>
+  <p class="section-intro">Все условия должны быть выполнены до подачи заявки на проведение предзащиты.</p>
+
+  <div class="card">
+    <div class="card-title"><span class="card-icon">📄</span> Диссертация и резюме</div>
+    <ul>
+      <li>Полный текст диссертации (отдельная целостная работа) </li>
+      <li>Резюме диссертации на русском языке</li>
+      <li>Резюме диссертации на английском языке</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="card-icon">📚</span> Публикации <span class="req-badge">мин. 3 статьи</span></div>
+    <ul>
+      <li>Не менее 3 статей в журналах, индексируемых  в журналах из списков <strong>A, B, C, D НИУ ВШЭ</strong></li>
+      <li>Из них минимум 2 статьи, содержащие результаты экспериментальных исследований </li>
+      <li>Соискатель должен быть <strong>первым или главным автором</strong> хотя бы в одной статье</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="card-icon">🎓</span> Подтверждающие документы</div>
+    <ul>
+      <li><strong></strong> документ о сдаче кандидатского экзамена по специальной дисциплине</li>
+      
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="card-icon">✅</span> Прочие условия</div>
+    <ul>
+      <li>Утверждённая в установленном порядке тема диссертации</li>
+      <li></li>
+      <li>Диссертация и резюме проверены на заимствования</li>
+    </ul>
+  </div>
+
+  <div class="notice notice-info">
+    <div class="notice-icon">ℹ️</div>
+    <div class="notice-body">
+      <strong>Подробнее о требованиях</strong>
+      <p>Дополнительную информацию о процедурах и требованиях смотрите на <a href="https://www.hse.ru/science/disscoun/council_cognitive_science/" target="_blank">сайте диссертационного совета по когнитивным наукам</a>.</p>
+    </div>
+  </div>
+
+
+  <!-- БЛОК 2: ЗА 10 ДНЕЙ ДО -->
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title">Что сделать до предзащиты</div>
+  </div>
+  <style>
+  .step-container {
+    padding: 15px;
+    font-family: Arial, sans-serif;
+  }
+  .step-item {
+    position: relative;
+    border-left: 2px solid #003a8c;
+    padding: 0 0 35px 25px;
+  }
+  /* Стрелка вниз */
+  .step-item::after {
+    content: '↓';
+    position: absolute;
+    left: -10px;
+    top: 0;
+    background: #fff;
+    color: #003a8c;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+  }
+  .step-item:last-child {
+    border-left: 2px solid transparent;
+    padding-bottom: 0;
+  }
+  /* Финальный маркер */
+  .step-item:last-child::after {
+    content: '✓';
+    color: #52c41a;
+  }
+  .step-header {
+    margin-bottom: 6px;
+  }
+  .step-title {
+    font-weight: bold;
+    color: #003a8c;
+    font-size: 1.1em;
+  }
+  .step-date {
+    font-size: 0.85em;
+    color: #1890ff;
+    background: #e6f7ff;
+    padding: 2px 10px;
+    border-radius: 10px;
+    margin-left: 10px;
+  }
+  .step-text {
+    font-size: 0.95em;
+    color: #444;
+    line-height: 1.6;
+  }
+</style>
+
+<div class="step-container">
+
+  <div class="step-item">
+    <div class="step-header">
+      <span class="step-title">Шаг 1. Согласование темы</span>
+      <span class="step-date">До июня</span>
+    </div>
+    <div class="step-text">
+      Необходимо показать список публикаций и название диссертации <strong>Владимиру Косоногову</strong>. 
+      Это позволит заранее скорректировать формулировки и избежать проблем при защите.
+    </div>
+  </div>
+
+  <div class="step-item">
+    <div class="step-header">
+      <span class="step-title">Шаг 2. Подача документов</span>
+      <span class="step-date">До 31 августа</span>
+    </div>
+    <div class="step-text">
+      Крайний срок отправки пакета <strong>Дмитрию Башкинцеву</strong>. 
+      В пакете должны быть: черновик диссертации, ревью на двух языках и список из минимум 3 статей (из них <strong>2 оригинальных эмпирических исследования</strong>).
+    </div>
+  </div>
+
+  <div class="step-item">
+    <div class="step-header">
+      <span class="step-title">Шаг 3. Анонсы и уведомления</span>
+      <span class="step-date">За 10 дней до защиты</span>
+    </div>
+    <div class="step-text">
+      После получения допуска к аттестации:
+      <br>• Направить данные для сайта ИКН <strong>Ксении Паниди</strong>.
+      <br>• Сообщить дату предзащиты менеджеру школы и <strong>Денису Захарову</strong>.
+    </div>
+  </div>
+
+  <div class="step-item">
+    <div class="step-header">
+      <span class="step-title">Шаг 4. Проведение предзащиты</span>
+      <span class="step-date">До 20 октября</span>
+    </div>
+    <div class="step-text">
+      Итоговая аттестация проходит с 15 сентября по 20 октября. 
+      Предзащита должна состояться <strong>не позднее 20 октября</strong>. 
+      Помните, что решение комиссии окончательное и вариант «рекомендовать с исправлениями» не предусмотрен.
+    </div>
+  </div>
+
+</div>
+
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <style>
+  .info-highlight {
+    background: #e6f7ff; /* Светло-голубой фон */
+    border: 1px solid #91d5ff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 25px 0;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .info-highlight:hover {
+    background: #bae7ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .info-icon {
+    font-size: 28px;
+    margin-right: 15px;
+  }
+
+  .info-text-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info-main-text {
+    font-size: 1.4em; /* Увеличенный размер */
+    font-weight: 700;
+    color: #003a8c;
+    line-height: 1.2;
+  }
+
+  .info-sub-text {
+    font-size: 0.9em;
+    color: #434343;
+    margin-top: 4px;
+  }
+</style>
+
+<a target="_blank" class="info-highlight">
+  <div class="info-icon">ℹ️</div>
+  <div class="info-text-wrapper">
+    <span class="info-main-text">ПОДРОБНЕЕ ОБ ОБЪЯВЛЕНИИ ПРЕДЗАЩИТЫ</span>
+    
+  </div>
+</a>
+      <div class="timeline-title">Разместить объявление на сайте ИКН (за 10 дней)</div>
+      <div class="timeline-desc">Отправьте название и резюме диссертации <strong>Ксении Паниди</strong> (<a href="mailto:kpanidi@hse.ru">kpanidi@hse.ru</a>).</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-time"></div>
+      <div class="timeline-title">Разместить объявление на сайте управления аспирантурой (за 10 дней)</div>
+      <div class="timeline-desc">Направьте уведомление <strong>Башкинцеву Д. Н.</strong> (<a href="https://iridescent-lebkuchen-012bd3.netlify.app/dbashkintsev@hse.ru">dbashkintsev@hse.ru</a>) в форме: <em>«Уведомляем Вас о предзащите… ФИО, тема, руководитель, дата»</em>.</div>
+    </div>
+
+    
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-time"></div>
+      <div class="timeline-title">Уведомить академического директора аспирантской школы</div>
+      <div class="timeline-desc"><strong>Захаров Денис Геннадьевич</strong> — академический директор.<br>Email: <a href="mailto:dgzakharov@hse.ru">dgzakharov@hse.ru</a></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot gold"></div>
+      <div class="timeline-time"></div>
+      <div class="timeline-title">Найти 2 рецензентов с учёными степенями</div>
+      <div class="timeline-desc">Поиском занимается научный руководитель или директор центра. <strong>Делайте это заранее</strong> — у рецензентов должно быть достаточно времени для написания отзыва.</div>
+    </div>
+
+  </div>
+
+  <div class="notice notice-warn" style="margin-top:20px">
+    <div class="notice-icon">⚠️</div>
+    <div class="notice-body">
+      <strong></strong>
+      <p>Стандартный пакет документов, правила оформления и примеры заполненных документов для предзащиты <a href="https://drive.google.com/drive/folders/1FHs0EigsKv3Bs436Wn3nSua4zMiFhkXK?usp=sharing" target="_blank">здесь</a>.</p>
+    </div>
+  </div>
+
+
+  <!-- БЛОК 3: ПРОВЕДЕНИЕ -->
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title">Как проходит заседание предзащиты</div>
+  </div>
+  <p class="section-intro">На заседании должны присутствовать <strong>минимум 5 человек с учёными степенями</strong>. Формат: офлайн, онлайн или смешанный.</p>
+
+  <div class="agenda">
+    <div class="agenda-row">
+      <div class="agenda-time">Время</div>
+      <div class="agenda-content">Этап заседания</div>
+    </div>
+    <div class="agenda-row">
+      <div class="agenda-time">5 мин</div>
+      <div class="agenda-content"><strong>Открытие заседания</strong> Ведущий приветствует участников, объявляет тему и цель предзащиты, представляет состав комиссии и рецензентов, поясняет регламент.</div>
+    </div>
+    <div class="agenda-row">
+      <div class="agenda-time">20 мин</div>
+      <div class="agenda-content"><strong>Доклад соискателя</strong> Основные результаты диссертации, ключевые научные выводы и публикации.</div>
+    </div>
+    <div class="agenda-row">
+      <div class="agenda-time">10–15 мин</div>
+      <div class="agenda-content"><strong>Вопросы к соискателю</strong> Члены комиссии и присутствующие задают вопросы по научному содержанию. Вопросы по форме доклада — позже, в общей дискуссии.</div>
+    </div>
+    <div class="agenda-row">
+      <div class="agenda-time">5–10 мин</div>
+      <div class="agenda-content"><strong>Отзыв научного руководителя</strong></div>
+    </div>
+    <div class="agenda-row">
+      <div class="agenda-time">5–10 мин</div>
+      <div class="agenda-content"><strong>Отзыв рецензента 1</strong> + ответы соискателя (5 мин)</div>
+    </div>
+    <div class="agenda-row">
+      <div class="agenda-time">5–10 мин</div>
+      <div class="agenda-content"><strong>Отзыв рецензента 2</strong> + ответы соискателя (5 мин)</div>
+    </div>
+    <div class="agenda-row">
+      <div class="agenda-time">10–15 мин</div>
+      <div class="agenda-content"><strong>Общая дискуссия</strong> Вопросы и обсуждение. Соискатель отвечает на замечания, уточняет позиции.</div>
+    </div>
+    <div class="agenda-row">
+      <div class="agenda-time">5 мин</div>
+      <div class="agenda-content"><strong>Заключительное слово соискателя</strong> Краткий ответ на обсуждение, планы по доработке.</div>
+    </div>
+    <div class="agenda-row">
+      <div class="agenda-time">5 мин</div>
+      <div class="agenda-content"><strong>Голосование</strong> Открытое голосование членов комиссии — офлайн и онлайн в чате.</div>
+    </div>
+    <div class="agenda-row">
+      <div class="agenda-time">5 мин</div>
+      <div class="agenda-content"><strong>Объявление решения</strong> Председатель озвучивает итог: рекомендация к защите, рекомендации по доработке или отказ.</div>
+    </div>
+  </div>
+
+  <div class="notice notice-ok" style="margin-top:16px">
+    <div class="notice-icon">✅</div>
+    <div class="notice-body">
+      <strong>Форматы проведения</strong>
+      <p>Предзащита может проводиться очно, в смешанном и полностью дистанционном формате.</p>
+    </div>
+  </div>
+
+
+  <!-- БЛОК 4: ПОСЛЕ ПРЕДЗАЩИТЫ -->
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title">Что сделать после предзащиты</div>
+  </div>
+  <p class="section-intro">Итоги предзащиты действуют 3 года. Постарайтесь оформить документы как можно быстрее.</p>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot green"></div>
+      <div class="timeline-time">В ДЕНЬ / НА СЛЕДУЮЩИЙ ДЕНЬ</div>
+      <div class="timeline-title">Составить и подписать Протокол</div>
+      <div class="timeline-desc">Протокол подписывает <strong>председательствующий</strong> (как правило сотрудник со степенью). Бланк протокола доступен на сайте аспирантуры.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot green"></div>
+      <div class="timeline-time">В ТЕЧЕНИЕ 7 ДНЕЙ</div>
+      <div class="timeline-title">Написать Заключение организации</div>
+      <div class="timeline-desc">Заключение пишет <strong>сам соискатель</strong>. Нужно направить проректору желательно в течение 7 дней после предзащиты. Максимальный срок действия итогов предзащиты — <strong>3 года.</strong></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot green"></div>
+      <div class="timeline-time">ПОСЛЕ ПРЕДЗАЩИТЫ</div>
+      <div class="timeline-title">Заполнить Заявление и Справку</div>
+      <div class="timeline-desc">
+        Заполните <strong>Заявление о выдаче заключения организации</strong> и <strong>Справку о предзащите</strong>. Бланки — на <a href="https://aspirantura.hse.ru/predzach/" target="_blank">сайте Аспирантской школы ВШЭ</a>.<br><br>
+        За образцами заполненных документов и проверкой обращайтесь:<br>
+        Захаров Д.Г.: <a href="mailto:dgzakharov@hse.ru">dgzakharov@hse.ru</a><br>
+        Хасанов Рустам: <a href="mailto:rhasanov@hse.ru">rhasanov@hse.ru</a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot green"></div>
+      <div class="timeline-time">ФИНАЛЬНЫЙ ШАГ</div>
+      <div class="timeline-title">Подразделение направляет документы на согласование</div>
+      <div class="timeline-desc">Заполненный пакет документов подразделение направляет для последующего согласования и утверждения.</div>
+    </div>
+
+  </div>
+
+  
+
+
+  <!-- БЛОК 5: КОНТАКТЫ -->
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div class="section-title">Ключевые контакты</div>
+  </div>
+
+  <div class="contacts-grid">
+    <div class="contact-card">
+      <div class="contact-role">Объявление на сайте ИКН</div>
+      <div class="contact-name">Ксения Паниди</div>
+      <div class="contact-email">kpanidi@hse.ru</div>
+    </div>
+    
+    <div class="contact-card">
+      <div class="contact-role">Менеджер аспирантской школы</div>
+      <div class="contact-name">Башкинцев Дмитрий Николаевич</div>
+      <div class="contact-email">dbashkintsev@hse.ru</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-role">Академический директор</div>
+      <div class="contact-name">Захаров Денис Геннадьевич</div>
+      <div class="contact-email">dgzakharov@hse.ru</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-role">Документы после предзащиты</div>
+      <div class="contact-name">Хасанов Рустам</div>
+      <div class="contact-email">rhasanov@hse.ru</div>
+    </div>
+    
+  </div>
+
+
+  <!-- ЧЕКЛИСТ -->
+  <div class="section-header">
+    <div class="section-num">✓</div>
+    <div class="section-title">Общий чеклист</div>
+  </div>
+
+  <div class="checklist">
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div><div class="check-label">Полный текст диссертации готов</div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div><div class="check-label">Резюме на русском и английском языках готово</div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div><div class="check-label">Минимум 3 публикации в списках А/B/C/D ВШЭ</div><div class="check-sub"></div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div><div class="check-label">Кандидатский экзамен сдан</div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div><div class="check-label">Тема диссертации утверждена</div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div><div class="check-label">Пакет документов подготовлен</div><div class="check-sub"></div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div><div class="check-label">За 10+ дней: объявление на сайте ИКН размещено</div><div class="check-sub">Отправить Ксении Паниди: kpanidi@hse.ru</div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div><div class="check-label">За 10+ дней: уведомление управлению аспирантурой отправлено</div><div class="check-sub">ynesterova@hse.ru</div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div><div class="check-label">За 10+ дней: менеджер и директор аспирантской школы уведомлены</div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div><div class="check-label">2 рецензента с учёными степенями найдены заблаговременно</div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div><div class="check-label">На заседании присутствуют минимум 5 человек с учёными степенями</div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div><div class="check-label">Протокол составлен и подписан председательствующим</div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div><div class="check-label">Заключение организации написано и направлено (в течение 7 дней)</div></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div><div class="check-label">Заявление и Справка заполнены и переданы в подразделение</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+</div>
+
+<footer>
+  Источники: <a href="https://www.hse.ru/cdm-centre/predefence" target="_blank">hse.ru/cdm-centre/predefence</a> · Регламент предзащиты · Порядок обсуждения диссертационных работ в НИУ ВШЭ (утв. 01.07.2021) · Положение об итоговой аттестации (утв. 30.10.2024)<br>
+  <span style="opacity:.5; font-size:12px; margin-top:6px; display:block">Аспирантская школа по когнитивным наукам · НИУ ВШЭ</span>
+</footer>
+
+
+
+<div class="troywell"><template shadowrootmode="open">
+      <style>@import url("chrome-extension://jcmbmadioaobdgfbmbpenhlcppfcahhi/content/styles.css");</style>
+      <div id="troywell" data-v-app=""><div class="content-app"><!----><!----><!----><!----></div></div></template></div><div class="twell-caa"><template shadowrootmode="open">
+    <style>
+    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/caa/styles.css");
+    </style>
+    <div id="twell-caa" data-v-app=""><!----></div></template></div><div class="twell-vpn"><template shadowrootmode="open">
+    <style>
+    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/vpn/styles.css");
+    </style>
+    <div id="twell-vpn" data-v-app=""><div data-v-346d92bb=""><!----></div></div></template></div><div class="twell-caa"><template shadowrootmode="open">
+    <style>
+    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/caa/styles.css");
+    </style>
+    <div id="twell-caa" data-v-app=""><!----></div></template></div><div class="twell-vpn"><template shadowrootmode="open">
+    <style>
+    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/vpn/styles.css");
+    </style>
+    <div id="twell-vpn" data-v-app=""><div data-v-346d92bb=""><!----></div></div></template></div><div class="troywell"><template shadowrootmode="open">
+      <style>@import url("chrome-extension://jcmbmadioaobdgfbmbpenhlcppfcahhi/content/styles.css");</style>
+      <div id="troywell" data-v-app=""><div class="content-app"><!----><!----><!----><!----></div></div></template></div><div class="twell-caa"><template shadowrootmode="open">
+    <style>
+    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/caa/styles.css");
+    </style>
+    <div id="twell-caa" data-v-app=""><!----></div></template></div><div class="twell-vpn"><template shadowrootmode="open">
+    <style>
+    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/vpn/styles.css");
+    </style>
+    <div id="twell-vpn" data-v-app=""><div data-v-346d92bb=""><!----></div></div></template></div><div class="troywell"><template shadowrootmode="open">
+      <style>@import url("chrome-extension://jcmbmadioaobdgfbmbpenhlcppfcahhi/content/styles.css");</style>
+      <div id="troywell" data-v-app=""><div class="content-app"><!----><!----><!----><!----></div></div></template></div><div class="twell-caa"><template shadowrootmode="open">
+    <style>
+    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/caa/styles.css");
+    </style>
+    <div id="twell-caa" data-v-app=""><!----></div></template></div><div class="twell-vpn"><template shadowrootmode="open">
+    <style>
+    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/vpn/styles.css");
+    </style>
+    <div id="twell-vpn" data-v-app=""><div data-v-346d92bb=""><!----></div></div></template></div><div class="troywell"><template shadowrootmode="open">
+      <style>@import url("chrome-extension://jcmbmadioaobdgfbmbpenhlcppfcahhi/content/styles.css");</style>
+      <div id="troywell" data-v-app=""><div class="content-app"><!----><!----><!----><!----></div></div></template></div><div class="troywell"><template shadowrootmode="open">
+      <style>@import url("chrome-extension://jcmbmadioaobdgfbmbpenhlcppfcahhi/content/styles.css");</style>
+      <div id="troywell" data-v-app=""><div class="content-app"><!----><!----><!----><!----></div></div></template></div></body><div class="troywell"><template shadowrootmode="open">
+      <style>@import url("chrome-extension://jcmbmadioaobdgfbmbpenhlcppfcahhi/content/styles.css");</style>
+      <div id="troywell" data-v-app=""><div class="content-app"><!----><!----><!----><!----></div></div></template></div></html>
