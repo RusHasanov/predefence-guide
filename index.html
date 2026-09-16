@@ -1,29 +1,97 @@
 <!DOCTYPE html>
-<!-- saved from url=(0048)https://iridescent-lebkuchen-012bd3.netlify.app/ -->
 <html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Гайд по предзащите диссертации — НИУ ВШЭ</title>
-<link href="./Гайд по предзащите диссертации — НИУ ВШЭ 4_files/css2" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --blue: #003087;
-    --blue-mid: #1a4da0;
-    --blue-light: #e8eef8;
+    /* brand fill — used as solid backgrounds (hero, footer, badges); stays constant across themes */
+    --brand: #003087;
+    /* brand as foreground text/ring color — needs to lighten on dark grounds for contrast */
+    --brand-fg: #003087;
+    --link: #1a4da0;
     --gold: #c8973a;
-    --gold-light: #f9f0e0;
+    --gold-ink: #8a5c00;
+    --gold-soft: #f9f0e0;
     --text: #1a1a2e;
     --muted: #5a6480;
     --bg: #f5f6fa;
-    --white: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #e8eef8;
     --border: #d0d8e8;
     --green: #1a7a4a;
-    --green-light: #e6f4ed;
+    --green-soft: #e6f4ed;
+    --green-border: #8ed4b0;
     --red: #a0261a;
-    --red-light: #fbeae8;
+    --red-soft: #fbeae8;
+    --red-border: #e8a09a;
+    --warn-soft: #fff8e6;
+    --warn-border: #e8c66a;
+    --warn-ink: #7a5a00;
+    --info-border: #b0c4e8;
+    --shadow: rgba(0, 48, 135, 0.1);
+    --focus: #c8973a;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --brand-fg: #8fb0ec;
+      --link: #8fb0ec;
+      --gold: #d9ad5c;
+      --gold-ink: #f2d9ab;
+      --gold-soft: #362a10;
+      --text: #e8ecf6;
+      --muted: #96a2c4;
+      --bg: #0b1226;
+      --surface: #121b39;
+      --surface-2: #182449;
+      --border: #263258;
+      --green: #58c08c;
+      --green-soft: #12291f;
+      --green-border: #235a3f;
+      --red: #e5806f;
+      --red-soft: #2e1512;
+      --red-border: #5c2c24;
+      --warn-soft: #2e2510;
+      --warn-border: #5c4a1e;
+      --warn-ink: #f0cf7a;
+      --info-border: #2c3d70;
+      --shadow: rgba(0, 0, 0, 0.45);
+    }
+  }
+  :root[data-theme="dark"] {
+    --brand-fg: #8fb0ec;
+    --link: #8fb0ec;
+    --gold: #d9ad5c;
+    --gold-ink: #f2d9ab;
+    --gold-soft: #362a10;
+    --text: #e8ecf6;
+    --muted: #96a2c4;
+    --bg: #0b1226;
+    --surface: #121b39;
+    --surface-2: #182449;
+    --border: #263258;
+    --green: #58c08c;
+    --green-soft: #12291f;
+    --green-border: #235a3f;
+    --red: #e5806f;
+    --red-soft: #2e1512;
+    --red-border: #5c2c24;
+    --warn-soft: #2e2510;
+    --warn-border: #5c4a1e;
+    --warn-ink: #f0cf7a;
+    --info-border: #2c3d70;
+    --shadow: rgba(0, 0, 0, 0.45);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
 
   body {
     font-family: 'IBM Plex Sans', sans-serif;
@@ -33,11 +101,14 @@
     font-size: 15px;
   }
 
+  a { color: var(--link); }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 3px; }
+
   /* HEADER */
   .hero {
-    background: var(--blue);
+    background: var(--brand);
     color: white;
-    padding: 60px 0 50px;
+    padding: 56px 0 44px;
     position: relative;
     overflow: hidden;
   }
@@ -74,6 +145,7 @@
     line-height: 1.1;
     margin-bottom: 18px;
     letter-spacing: -0.5px;
+    text-wrap: balance;
   }
   .hero h1 span { color: var(--gold); }
   .hero-sub {
@@ -83,7 +155,7 @@
     font-weight: 300;
   }
   .hero-tags {
-    margin-top: 28px;
+    margin-top: 26px;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
@@ -98,6 +170,40 @@
     letter-spacing: 0.5px;
   }
 
+  /* QUICK NAV */
+  .quicknav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .quicknav-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .quicknav-inner::-webkit-scrollbar { display: none; }
+  .qn-link {
+    flex-shrink: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.3px;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 13px 12px;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .qn-link:hover { color: var(--text); }
+  .qn-link.active { color: var(--brand-fg); border-bottom-color: var(--gold); font-weight: 500; }
+
   /* LAYOUT */
   .container {
     max-width: 860px;
@@ -106,6 +212,7 @@
   }
 
   /* SECTION HEADERS */
+  section { scroll-margin-top: 54px; }
   .section-header {
     display: flex;
     align-items: center;
@@ -116,7 +223,7 @@
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: var(--blue);
+    background: var(--brand);
     color: white;
     display: flex;
     align-items: center;
@@ -130,8 +237,9 @@
     font-family: 'Playfair Display', serif;
     font-size: 22px;
     font-weight: 700;
-    color: var(--blue);
+    color: var(--brand-fg);
     line-height: 1.2;
+    text-wrap: balance;
   }
   .section-intro {
     color: var(--muted);
@@ -143,15 +251,15 @@
 
   /* CARDS */
   .card {
-    background: var(--white);
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 24px 28px;
     margin-bottom: 14px;
     position: relative;
-    transition: box-shadow 0.2s;
+    transition: box-shadow 0.2s, transform 0.2s;
   }
-  .card:hover { box-shadow: 0 4px 20px rgba(0,48,135,0.08); }
+  .card:hover { box-shadow: 0 4px 20px var(--shadow); transform: translateY(-1px); }
 
   .card-title {
     font-weight: 500;
@@ -190,9 +298,9 @@
   /* REQUIREMENT BADGE */
   .req-badge {
     display: inline-block;
-    background: var(--gold-light);
+    background: var(--gold-soft);
     border: 1px solid var(--gold);
-    color: #8a5c00;
+    color: var(--gold-ink);
     font-size: 11px;
     font-family: 'IBM Plex Mono', monospace;
     padding: 2px 10px;
@@ -217,22 +325,61 @@
   .notice-body strong { display: block; margin-bottom: 4px; font-size: 14px; }
   .notice-body p { font-size: 14px; font-weight: 300; }
 
-  .notice-warn {
-    background: #fff8e6;
-    border: 1px solid #e8c66a;
+  .notice-warn { background: var(--warn-soft); border: 1px solid var(--warn-border); color: var(--text); }
+  .notice-info { background: var(--surface-2); border: 1px solid var(--info-border); }
+  .notice-ok { background: var(--green-soft); border: 1px solid var(--green-border); }
+  .notice-red { background: var(--red-soft); border: 1px solid var(--red-border); }
+
+  /* STEPS (Section 2) */
+  .step-container { padding: 15px 0; }
+  .step-item {
+    position: relative;
+    border-left: 2px solid var(--brand-fg);
+    padding: 0 0 35px 25px;
   }
-  .notice-info {
-    background: var(--blue-light);
-    border: 1px solid #b0c4e8;
+  .step-item::after {
+    content: '↓';
+    position: absolute;
+    left: -10px;
+    top: 0;
+    background: var(--bg);
+    color: var(--brand-fg);
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
   }
-  .notice-ok {
-    background: var(--green-light);
-    border: 1px solid #8ed4b0;
+  .step-item:last-child { border-left: 2px solid transparent; padding-bottom: 0; }
+  .step-item:last-child::after { content: '✓'; color: var(--green); }
+  .step-header { margin-bottom: 6px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .step-title { font-weight: 600; color: var(--brand-fg); font-size: 1.05em; }
+  .step-date {
+    font-size: 0.8em;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--link);
+    background: var(--surface-2);
+    padding: 2px 10px;
+    border-radius: 10px;
   }
-  .notice-red {
-    background: var(--red-light);
-    border: 1px solid #e8a09a;
+  .step-text { font-size: 0.95em; color: var(--muted); line-height: 1.6; }
+
+  /* INFO HIGHLIGHT LINK */
+  .info-highlight {
+    background: var(--surface-2);
+    border: 1px solid var(--info-border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
   }
+  .info-highlight:hover { transform: translateY(-1px); box-shadow: 0 4px 14px var(--shadow); }
+  .info-icon { font-size: 26px; margin-right: 14px; }
+  .info-text-wrapper { display: flex; flex-direction: column; }
+  .info-main-text { font-size: 1.2em; font-weight: 700; color: var(--brand-fg); line-height: 1.2; }
 
   /* TIMELINE */
   .timeline {
@@ -241,10 +388,7 @@
     border-left: 3px solid var(--border);
     margin-top: 8px;
   }
-  .timeline-item {
-    position: relative;
-    padding: 0 0 28px 24px;
-  }
+  .timeline-item { position: relative; padding: 0 0 28px 24px; }
   .timeline-item:last-child { padding-bottom: 0; }
   .timeline-dot {
     position: absolute;
@@ -253,11 +397,8 @@
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: var(--white);
-    border: 3px solid var(--blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: var(--surface);
+    border: 3px solid var(--brand-fg);
   }
   .timeline-dot.gold { border-color: var(--gold); }
   .timeline-dot.green { border-color: var(--green); }
@@ -268,17 +409,8 @@
     letter-spacing: 1px;
     margin-bottom: 4px;
   }
-  .timeline-title {
-    font-weight: 500;
-    font-size: 15px;
-    color: var(--text);
-    margin-bottom: 5px;
-  }
-  .timeline-desc {
-    font-size: 14px;
-    color: var(--muted);
-    font-weight: 300;
-  }
+  .timeline-title { font-weight: 500; font-size: 15px; color: var(--text); margin-bottom: 5px; }
+  .timeline-desc { font-size: 14px; color: var(--muted); font-weight: 300; }
 
   /* CONTACT CARDS */
   .contacts-grid {
@@ -288,7 +420,7 @@
     margin-top: 8px;
   }
   .contact-card {
-    background: var(--white);
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 18px 20px;
@@ -301,69 +433,93 @@
     text-transform: uppercase;
     margin-bottom: 6px;
   }
-  .contact-name {
-    font-weight: 500;
-    font-size: 14px;
-    color: var(--text);
-    margin-bottom: 6px;
-  }
+  .contact-name { font-weight: 500; font-size: 14px; color: var(--text); margin-bottom: 8px; }
+  .contact-email-row { display: flex; align-items: center; gap: 8px; }
   .contact-email {
     font-size: 13px;
-    color: var(--blue-mid);
+    color: var(--link);
     font-family: 'IBM Plex Mono', monospace;
     word-break: break-all;
+    text-decoration: none;
   }
+  .contact-email:hover { text-decoration: underline; }
+  .copy-btn {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .copy-btn:hover { background: var(--surface-2); color: var(--brand-fg); border-color: var(--info-border); }
+  .copy-btn.copied { color: var(--green); border-color: var(--green-border); background: var(--green-soft); }
 
   /* AGENDA TABLE */
-  .agenda {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .agenda-row {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    border-bottom: 1px solid var(--border);
-  }
+  .agenda { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .agenda-row { display: grid; grid-template-columns: 80px 1fr; border-bottom: 1px solid var(--border); }
   .agenda-row:last-child { border-bottom: none; }
-  .agenda-row:first-child .agenda-time { background: var(--blue); color: white; }
-  .agenda-row:first-child .agenda-content { background: var(--blue); color: rgba(255,255,255,0.8); font-weight: 500; }
+  .agenda-row:first-child .agenda-time { background: var(--brand); color: white; }
+  .agenda-row:first-child .agenda-content { background: var(--brand); color: rgba(255,255,255,0.8); font-weight: 500; }
   .agenda-time {
     padding: 14px 16px;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
-    background: var(--blue-light);
-    color: var(--blue);
+    background: var(--surface-2);
+    color: var(--brand-fg);
     border-right: 1px solid var(--border);
     display: flex;
     align-items: center;
     font-weight: 500;
   }
-  .agenda-content {
-    padding: 14px 18px;
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-  }
+  .agenda-content { padding: 14px 18px; font-size: 14px; font-weight: 300; color: var(--text); display: flex; align-items: center; }
   .agenda-content strong { font-weight: 500; display: block; margin-bottom: 2px; }
 
   /* CHECKLIST */
-  .checklist {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
+  .checklist-progress {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+    padding-left: 52px;
   }
+  .checklist-bar {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--surface-2);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .checklist-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--gold), var(--green));
+    transition: width 0.3s ease;
+  }
+  .checklist-count {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .checklist { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
   .check-item {
     display: flex;
     align-items: flex-start;
     gap: 14px;
     padding: 16px 20px;
     border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s;
   }
+  .check-item:hover { background: var(--surface-2); }
   .check-item:last-child { border-bottom: none; }
   .check-box {
     width: 22px;
@@ -372,340 +528,58 @@
     border-radius: 5px;
     flex-shrink: 0;
     margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    transition: background 0.15s, border-color 0.15s;
   }
-  .check-label { font-size: 14px; font-weight: 400; }
+  .check-item.checked .check-box { background: var(--green); border-color: var(--green); }
+  .check-item.checked .check-label { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--border); }
+  .check-label { font-size: 14px; font-weight: 400; transition: color 0.15s; }
   .check-sub { font-size: 13px; color: var(--muted); font-weight: 300; margin-top: 3px; }
 
-  /* FOOTER */
-  footer {
-    background: var(--blue);
-    color: rgba(255,255,255,0.6);
-    text-align: center;
-    padding: 28px 32px;
-    font-size: 13px;
-    font-weight: 300;
+  /* BACK TO TOP */
+  .to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--brand);
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 40;
   }
+  .to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .to-top:hover { background: var(--link); }
+
+  /* FOOTER */
+  footer { background: var(--brand); color: rgba(255,255,255,0.6); text-align: center; padding: 28px 32px; font-size: 13px; font-weight: 300; }
   footer a { color: rgba(255,255,255,0.8); }
 
   /* DIVIDER */
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 40px 0 0;
-  }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0 0; }
 
   @media (max-width: 600px) {
     .agenda-row { grid-template-columns: 60px 1fr; }
     .contacts-grid { grid-template-columns: 1fr; }
   }
 </style>
-<style>.troywell-serp-hkhJqI {
-  width: max-content;
-  display: flex;
-  z-index: 999999999999;
-  box-sizing: border-box;
-  cursor: default;
-  margin-bottom: 4px;
-  border-radius: 12px;
-  height: 40px;
-  padding: 4px 12px 4px 4px;
-  background: #fff;
-}
-.troywell-serp__container-PWkOSj {
-  width: 100%;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.troywell-serp__subtitle-ZOhJGg {
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  color: #1D2939;
-}
-.troywell-serp__subtitle_blue-B6S7O0 {
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  color: #3A70F7;
-}
-.troywell-serp__logo-HBqGnZ {
-  padding: 4px 0px;
-}
-.troywell-serp__diamond-2nuCqU {
-  width: 18px;
-  height: 18px;
-}
-.troywell-serp__count-bEX2jp {
-  padding: 4px 8px;
-  gap: 10px;
-  background: #E4EDFE;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #3A70F7;
-}
-</style><style>.troywell-serp-hkhJqI {
-  width: max-content;
-  display: flex;
-  z-index: 999999999999;
-  box-sizing: border-box;
-  cursor: default;
-  margin-bottom: 4px;
-  border-radius: 12px;
-  height: 40px;
-  padding: 4px 12px 4px 4px;
-  background: #fff;
-}
-.troywell-serp__container-PWkOSj {
-  width: 100%;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.troywell-serp__subtitle-ZOhJGg {
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  color: #1D2939;
-}
-.troywell-serp__subtitle_blue-B6S7O0 {
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  color: #3A70F7;
-}
-.troywell-serp__logo-HBqGnZ {
-  padding: 4px 0px;
-}
-.troywell-serp__diamond-2nuCqU {
-  width: 18px;
-  height: 18px;
-}
-.troywell-serp__count-bEX2jp {
-  padding: 4px 8px;
-  gap: 10px;
-  background: #E4EDFE;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #3A70F7;
-}
-</style><style>.troywell-serp-hkhJqI {
-  width: max-content;
-  display: flex;
-  z-index: 999999999999;
-  box-sizing: border-box;
-  cursor: default;
-  margin-bottom: 4px;
-  border-radius: 12px;
-  height: 40px;
-  padding: 4px 12px 4px 4px;
-  background: #fff;
-}
-.troywell-serp__container-PWkOSj {
-  width: 100%;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.troywell-serp__subtitle-ZOhJGg {
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  color: #1D2939;
-}
-.troywell-serp__subtitle_blue-B6S7O0 {
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  color: #3A70F7;
-}
-.troywell-serp__logo-HBqGnZ {
-  padding: 4px 0px;
-}
-.troywell-serp__diamond-2nuCqU {
-  width: 18px;
-  height: 18px;
-}
-.troywell-serp__count-bEX2jp {
-  padding: 4px 8px;
-  gap: 10px;
-  background: #E4EDFE;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #3A70F7;
-}
-</style><style>.troywell-serp-hkhJqI {
-  width: max-content;
-  display: flex;
-  z-index: 999999999999;
-  box-sizing: border-box;
-  cursor: default;
-  margin-bottom: 4px;
-  border-radius: 12px;
-  height: 40px;
-  padding: 4px 12px 4px 4px;
-  background: #fff;
-}
-.troywell-serp__container-PWkOSj {
-  width: 100%;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.troywell-serp__subtitle-ZOhJGg {
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  color: #1D2939;
-}
-.troywell-serp__subtitle_blue-B6S7O0 {
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  color: #3A70F7;
-}
-.troywell-serp__logo-HBqGnZ {
-  padding: 4px 0px;
-}
-.troywell-serp__diamond-2nuCqU {
-  width: 18px;
-  height: 18px;
-}
-.troywell-serp__count-bEX2jp {
-  padding: 4px 8px;
-  gap: 10px;
-  background: #E4EDFE;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #3A70F7;
-}
-</style><style>.troywell-serp-hkhJqI {
-  width: max-content;
-  display: flex;
-  z-index: 999999999999;
-  box-sizing: border-box;
-  cursor: default;
-  margin-bottom: 4px;
-  border-radius: 12px;
-  height: 40px;
-  padding: 4px 12px 4px 4px;
-  background: #fff;
-}
-.troywell-serp__container-PWkOSj {
-  width: 100%;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.troywell-serp__subtitle-ZOhJGg {
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  color: #1D2939;
-}
-.troywell-serp__subtitle_blue-B6S7O0 {
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  color: #3A70F7;
-}
-.troywell-serp__logo-HBqGnZ {
-  padding: 4px 0px;
-}
-.troywell-serp__diamond-2nuCqU {
-  width: 18px;
-  height: 18px;
-}
-.troywell-serp__count-bEX2jp {
-  padding: 4px 8px;
-  gap: 10px;
-  background: #E4EDFE;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #3A70F7;
-}
-</style><style>.troywell-serp-hkhJqI {
-  width: max-content;
-  display: flex;
-  z-index: 999999999999;
-  box-sizing: border-box;
-  cursor: default;
-  margin-bottom: 4px;
-  border-radius: 12px;
-  height: 40px;
-  padding: 4px 12px 4px 4px;
-  background: #fff;
-}
-.troywell-serp__container-PWkOSj {
-  width: 100%;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.troywell-serp__subtitle-ZOhJGg {
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  color: #1D2939;
-}
-.troywell-serp__subtitle_blue-B6S7O0 {
-  font-family: 'Gilroy';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  color: #3A70F7;
-}
-.troywell-serp__logo-HBqGnZ {
-  padding: 4px 0px;
-}
-.troywell-serp__diamond-2nuCqU {
-  width: 18px;
-  height: 18px;
-}
-.troywell-serp__count-bEX2jp {
-  padding: 4px 8px;
-  gap: 10px;
-  background: #E4EDFE;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #3A70F7;
-}
-</style></head>
+</head>
 <body>
 
 <!-- HERO -->
@@ -722,9 +596,22 @@
   </div>
 </div>
 
+<nav class="quicknav" id="quicknav" aria-label="Разделы гайда">
+  <div class="quicknav-inner">
+    <a href="#section-1" class="qn-link" data-target="section-1">1 · Допуск</a>
+    <a href="#section-2" class="qn-link" data-target="section-2">2 · До предзащиты</a>
+    <a href="#section-3" class="qn-link" data-target="section-3">3 · Организация</a>
+    <a href="#section-4" class="qn-link" data-target="section-4">4 · Заседание</a>
+    <a href="#section-5" class="qn-link" data-target="section-5">5 · После</a>
+    <a href="#section-6" class="qn-link" data-target="section-6">6 · Контакты</a>
+    <a href="#checklist" class="qn-link" data-target="checklist">✓ Чек-лист</a>
+  </div>
+</nav>
+
 <div class="container">
 
   <!-- БЛОК 1: ТРЕБОВАНИЯ К ДОПУСКУ -->
+  <section id="section-1">
   <div class="section-header">
     <div class="section-num">1</div>
     <div class="section-title">Что нужно иметь для допуска к предзащите</div>
@@ -752,8 +639,7 @@
   <div class="card">
     <div class="card-title"><span class="card-icon">🎓</span> Подтверждающие документы</div>
     <ul>
-      <li><strong></strong> документ о сдаче кандидатского экзамена по специальной дисциплине</li>
-      
+      <li>Документ о сдаче кандидатского экзамена по специальной дисциплине</li>
     </ul>
   </div>
 
@@ -761,7 +647,6 @@
     <div class="card-title"><span class="card-icon">✅</span> Прочие условия</div>
     <ul>
       <li>Утверждённая в установленном порядке тема диссертации</li>
-      <li></li>
       <li>Диссертация и резюме проверены на заимствования</li>
     </ul>
   </div>
@@ -773,199 +658,97 @@
       <p>Дополнительную информацию о процедурах и требованиях смотрите на <a href="https://www.hse.ru/science/disscoun/council_cognitive_science/" target="_blank">сайте диссертационного совета по когнитивным наукам</a>.</p>
     </div>
   </div>
+  </section>
 
 
   <!-- БЛОК 2: ЗА 10 ДНЕЙ ДО -->
+  <section id="section-2">
   <div class="section-header">
     <div class="section-num">2</div>
     <div class="section-title">Что сделать до предзащиты</div>
   </div>
-  <style>
-  .step-container {
-    padding: 15px;
-    font-family: Arial, sans-serif;
-  }
-  .step-item {
-    position: relative;
-    border-left: 2px solid #003a8c;
-    padding: 0 0 35px 25px;
-  }
-  /* Стрелка вниз */
-  .step-item::after {
-    content: '↓';
-    position: absolute;
-    left: -10px;
-    top: 0;
-    background: #fff;
-    color: #003a8c;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-  }
-  .step-item:last-child {
-    border-left: 2px solid transparent;
-    padding-bottom: 0;
-  }
-  /* Финальный маркер */
-  .step-item:last-child::after {
-    content: '✓';
-    color: #52c41a;
-  }
-  .step-header {
-    margin-bottom: 6px;
-  }
-  .step-title {
-    font-weight: bold;
-    color: #003a8c;
-    font-size: 1.1em;
-  }
-  .step-date {
-    font-size: 0.85em;
-    color: #1890ff;
-    background: #e6f7ff;
-    padding: 2px 10px;
-    border-radius: 10px;
-    margin-left: 10px;
-  }
-  .step-text {
-    font-size: 0.95em;
-    color: #444;
-    line-height: 1.6;
-  }
-</style>
 
-<div class="step-container">
+  <div class="step-container">
 
-  <div class="step-item">
-    <div class="step-header">
-      <span class="step-title">Шаг 1. Согласование темы</span>
-      <span class="step-date">До июня</span>
+    <div class="step-item">
+      <div class="step-header">
+        <span class="step-title">Шаг 1. Согласование темы</span>
+        <span class="step-date">До июня</span>
+      </div>
+      <div class="step-text">
+        Необходимо показать список публикаций и название диссертации <strong>Владимиру Косоногову</strong>.
+        Это позволит заранее скорректировать формулировки и избежать проблем при защите.
+      </div>
     </div>
-    <div class="step-text">
-      Необходимо показать список публикаций и название диссертации <strong>Владимиру Косоногову</strong>. 
-      Это позволит заранее скорректировать формулировки и избежать проблем при защите.
+
+    <div class="step-item">
+      <div class="step-header">
+        <span class="step-title">Шаг 2. Подача документов</span>
+        <span class="step-date">До 31 августа</span>
+      </div>
+      <div class="step-text">
+        Крайний срок отправки пакета <strong>Дмитрию Башкинцеву</strong>.
+        В пакете должны быть: черновик диссертации, ревью на двух языках и список из минимум 3 статей (из них <strong>2 оригинальных эмпирических исследования</strong>).
+      </div>
     </div>
+
+    <div class="step-item">
+      <div class="step-header">
+        <span class="step-title">Шаг 3. Дата, анонсы и уведомления</span>
+        <span class="step-date">За 10 дней до защиты</span>
+      </div>
+      <div class="step-text">
+        После получения допуска к аттестации дату предзащиты выбирает <strong>сам аспирант</strong> по согласованию с научным руководителем — определитесь с ней заранее, она нужна для отсчёта 10-дневного срока анонсов:
+        <br>• Направить данные для сайта ИКН <strong>Ксении Паниди</strong>.
+        <br>• Отправить уведомление на сайт управления аспирантурой <strong>Юлии Нестеровой</strong>.
+        <br>• Сообщить дату предзащиты менеджеру школы и <strong>Денису Захарову</strong>.
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-header">
+        <span class="step-title">Шаг 4. Проведение предзащиты</span>
+        <span class="step-date">До 20 октября</span>
+      </div>
+      <div class="step-text">
+        Итоговая аттестация проходит с 15 сентября по 20 октября.
+        Предзащита должна состояться <strong>не позднее 20 октября</strong>.
+        Помните, что решение комиссии окончательное и вариант «рекомендовать с исправлениями» не предусмотрен.
+      </div>
+    </div>
+
   </div>
-
-  <div class="step-item">
-    <div class="step-header">
-      <span class="step-title">Шаг 2. Подача документов</span>
-      <span class="step-date">До 31 августа</span>
-    </div>
-    <div class="step-text">
-      Крайний срок отправки пакета <strong>Дмитрию Башкинцеву</strong>. 
-      В пакете должны быть: черновик диссертации, ревью на двух языках и список из минимум 3 статей (из них <strong>2 оригинальных эмпирических исследования</strong>).
-    </div>
-  </div>
-
-  <div class="step-item">
-    <div class="step-header">
-      <span class="step-title">Шаг 3. Анонсы и уведомления</span>
-      <span class="step-date">За 10 дней до защиты</span>
-    </div>
-    <div class="step-text">
-      После получения допуска к аттестации:
-      <br>• Направить данные для сайта ИКН <strong>Ксении Паниди</strong>.
-      <br>• Сообщить дату предзащиты менеджеру школы и <strong>Денису Захарову</strong>.
-    </div>
-  </div>
-
-  <div class="step-item">
-    <div class="step-header">
-      <span class="step-title">Шаг 4. Проведение предзащиты</span>
-      <span class="step-date">До 20 октября</span>
-    </div>
-    <div class="step-text">
-      Итоговая аттестация проходит с 15 сентября по 20 октября. 
-      Предзащита должна состояться <strong>не позднее 20 октября</strong>. 
-      Помните, что решение комиссии окончательное и вариант «рекомендовать с исправлениями» не предусмотрен.
-    </div>
-  </div>
-
-</div>
-
 
   <div class="timeline">
 
     <div class="timeline-item">
       <div class="timeline-dot"></div>
-      <style>
-  .info-highlight {
-    background: #e6f7ff; /* Светло-голубой фон */
-    border: 1px solid #91d5ff;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 25px 0;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease;
-    text-decoration: none;
-  }
-
-  .info-highlight:hover {
-    background: #bae7ff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-
-  .info-icon {
-    font-size: 28px;
-    margin-right: 15px;
-  }
-
-  .info-text-wrapper {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .info-main-text {
-    font-size: 1.4em; /* Увеличенный размер */
-    font-weight: 700;
-    color: #003a8c;
-    line-height: 1.2;
-  }
-
-  .info-sub-text {
-    font-size: 0.9em;
-    color: #434343;
-    margin-top: 4px;
-  }
-</style>
-
-<a target="_blank" class="info-highlight">
-  <div class="info-icon">ℹ️</div>
-  <div class="info-text-wrapper">
-    <span class="info-main-text">ПОДРОБНЕЕ ОБ ОБЪЯВЛЕНИИ ПРЕДЗАЩИТЫ</span>
-    
-  </div>
-</a>
+      <a href="https://drive.google.com/drive/folders/1FHs0EigsKv3Bs436Wn3nSua4zMiFhkXK?usp=sharing" target="_blank" class="info-highlight">
+        <div class="info-icon">ℹ️</div>
+        <div class="info-text-wrapper">
+          <span class="info-main-text">Подробнее об объявлении предзащиты</span>
+        </div>
+      </a>
       <div class="timeline-title">Разместить объявление на сайте ИКН (за 10 дней)</div>
-      <div class="timeline-desc">Отправьте название и резюме диссертации <strong>Ксении Паниди</strong> (<a href="mailto:kpanidi@hse.ru">kpanidi@hse.ru</a>).</div>
+      <div class="timeline-desc">Объявление на сайт ИКН отправляет сам аспирант. Отправьте название и резюме диссертации <strong>Ксении Паниди</strong> (<a href="mailto:kpanidi@hse.ru">kpanidi@hse.ru</a>).</div>
     </div>
 
     <div class="timeline-item">
       <div class="timeline-dot"></div>
-      <div class="timeline-time"></div>
       <div class="timeline-title">Разместить объявление на сайте управления аспирантурой (за 10 дней)</div>
-      <div class="timeline-desc">Направьте уведомление <strong>Башкинцеву Д. Н.</strong> (<a href="https://iridescent-lebkuchen-012bd3.netlify.app/dbashkintsev@hse.ru">dbashkintsev@hse.ru</a>) в форме: <em>«Уведомляем Вас о предзащите… ФИО, тема, руководитель, дата»</em>.</div>
+      <div class="timeline-desc">Это отдельное уведомление, размещение на сайте ИКН его не заменяет. Направьте уведомление <strong>Нестеровой Ю. П.</strong> (<a href="mailto:ynesterova@hse.ru">ynesterova@hse.ru</a>) в форме: <em>«Уведомляем Вас о предзащите… ФИО, тема, руководитель, дата»</em>.</div>
     </div>
-
-    
 
     <div class="timeline-item">
       <div class="timeline-dot"></div>
-      <div class="timeline-time"></div>
       <div class="timeline-title">Уведомить академического директора аспирантской школы</div>
       <div class="timeline-desc"><strong>Захаров Денис Геннадьевич</strong> — академический директор.<br>Email: <a href="mailto:dgzakharov@hse.ru">dgzakharov@hse.ru</a></div>
     </div>
 
     <div class="timeline-item">
       <div class="timeline-dot gold"></div>
-      <div class="timeline-time"></div>
       <div class="timeline-title">Найти 2 рецензентов с учёными степенями</div>
-      <div class="timeline-desc">Поиском занимается научный руководитель или директор центра. <strong>Делайте это заранее</strong> — у рецензентов должно быть достаточно времени для написания отзыва.</div>
+      <div class="timeline-desc">Поиском занимается научный руководитель или директор центра. <strong>Делайте это заранее</strong> — у рецензентов должно быть достаточно времени для написания отзыва. Подробнее о том, кто может быть рецензентом и что он готовит — в разделе 3 ниже.</div>
     </div>
 
   </div>
@@ -973,15 +756,80 @@
   <div class="notice notice-warn" style="margin-top:20px">
     <div class="notice-icon">⚠️</div>
     <div class="notice-body">
-      <strong></strong>
       <p>Стандартный пакет документов, правила оформления и примеры заполненных документов для предзащиты <a href="https://drive.google.com/drive/folders/1FHs0EigsKv3Bs436Wn3nSua4zMiFhkXK?usp=sharing" target="_blank">здесь</a>.</p>
     </div>
   </div>
+  </section>
 
 
-  <!-- БЛОК 3: ПРОВЕДЕНИЕ -->
+  <!-- БЛОК 3: ОРГАНИЗАЦИОННЫЕ ВОПРОСЫ -->
+  <section id="section-3">
   <div class="section-header">
     <div class="section-num">3</div>
+    <div class="section-title">Кто за что отвечает: организационные вопросы</div>
+  </div>
+  <p class="section-intro">Эти детали не всегда прописаны в положениях явно — вот как это устроено на практике. Короткий ответ на большинство «кто это делает»: <strong>сам аспирант вместе с научным руководителем</strong>, а не деканат или АШ.</p>
+
+  <div class="card">
+    <div class="card-title"><span class="card-icon">📅</span> Кто и когда определяет точную дату</div>
+    <ul>
+      <li>Дату предзащиты выбирает <strong>сам аспирант</strong> (по согласованию с научным руководителем) — это не то, чего нужно ждать сверху.</li>
+      <li>Отдельно утверждать состав приглашённых не нужно — предзащита является открытым заседанием.</li>
+      <li>Не откладывайте выбор даты: от неё отсчитывается 10-дневный срок для анонсов на сайте ИКН и в управлении аспирантуры.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="card-icon">👥</span> Кворум и состав комиссии</div>
+    <ul>
+      <li>Отдельного требования «кворума» (доли состава подразделения) для предзащиты нет — это прямо закреплено в Порядке обсуждения диссертационных работ НИУ ВШЭ.</li>
+      <li>Единственное жёсткое условие — на самом заседании должны присутствовать <strong>минимум 5 специалистов</strong> с учёной степенью доктора наук, кандидата наук или PhD.</li>
+      <li>Если в своём подразделении нужное число специалистов не набрать — можно обратиться за помощью к коллегам со степенью из других центров.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="card-icon">🧑‍🏫</span> Кто может быть рецензентом</div>
+    <ul>
+      <li>Нужно не менее 2 рецензентов с учёной степенью доктора наук, кандидата наук или PhD.</li>
+      <li>Рецензентом может быть в том числе <strong>сотрудник вашего же центра или подразделения</strong> — требование «только внешний рецензент» действует лишь для докторских диссертаций (для кандидатской такого ограничения нет).</li>
+      <li>Кандидатуры подбирает научный руководитель или директор центра — договаривайтесь с ними об этом заранее.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="card-icon">📝</span> Что готовит рецензент и нужно ли ему присутствовать</div>
+    <ul>
+      <li>На заседании рецензент выступает с устным отзывом (5–10 минут): достоинства и недостатки работы, рекомендации — и затем отвечает на вопросы после ответа соискателя.</li>
+      <li>Личное присутствие (очно или онлайн) — стандартный вариант. Если рецензент не может присутствовать, он заранее передаёт руководителю подразделения <strong>письменное заключение (рецензию)</strong>, которое зачитывается на заседании вместо устного отзыва.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="card-icon">💻</span> Ссылка на видеозвонок, техника в аудитории и запись</div>
+    <ul>
+      <li>Отдельного технического координатора от университета для этого нет — организацию берут на себя <strong>сам аспирант и научный руководитель</strong>.</li>
+      <li>Заранее забронируйте аудиторию с нужной техникой (проектор, микрофоны, компьютер с интернетом и веб-камерой — для смешанного формата это обязательно) и проверьте, что всё работает.</li>
+      <li>Создайте ссылку на видеоконференцию (Zoom, Teams и т.п.) и разошлите её членам комиссии, рецензентам и приглашённым вместе с приглашением на заседание.</li>
+      <li>Встречу открывает и модерирует ведущий (председательствующий) заседания — его тоже выбирает сам аспирант, обычно это человек со степенью, который будет вести заседание.</li>
+      <li>Если нужна запись заседания — уточните это заранее у председательствующего.</li>
+    </ul>
+  </div>
+
+  <div class="notice notice-info">
+    <div class="notice-icon">ℹ️</div>
+    <div class="notice-body">
+      <strong>Нужна помощь с настройкой в аудитории?</strong>
+      <p>По вопросам техники в аудитории (проектор, микрофоны) можно обратиться к Рустаму Хасанову (<a href="mailto:rhasanov@hse.ru">rhasanov@hse.ru</a>). Но бронирование аудитории и создание ссылки на видеоконференцию — зона ответственности аспиранта.</p>
+    </div>
+  </div>
+  </section>
+
+
+  <!-- БЛОК 4: ПРОВЕДЕНИЕ -->
+  <section id="section-4">
+  <div class="section-header">
+    <div class="section-num">4</div>
     <div class="section-title">Как проходит заседание предзащиты</div>
   </div>
   <p class="section-intro">На заседании должны присутствовать <strong>минимум 5 человек с учёными степенями</strong>. Формат: офлайн, онлайн или смешанный.</p>
@@ -1040,11 +888,13 @@
       <p>Предзащита может проводиться очно, в смешанном и полностью дистанционном формате.</p>
     </div>
   </div>
+  </section>
 
 
-  <!-- БЛОК 4: ПОСЛЕ ПРЕДЗАЩИТЫ -->
+  <!-- БЛОК 5: ПОСЛЕ ПРЕДЗАЩИТЫ -->
+  <section id="section-5">
   <div class="section-header">
-    <div class="section-num">4</div>
+    <div class="section-num">5</div>
     <div class="section-title">Что сделать после предзащиты</div>
   </div>
   <p class="section-intro">Итоги предзащиты действуют 3 года. Постарайтесь оформить документы как можно быстрее.</p>
@@ -1085,108 +935,145 @@
     </div>
 
   </div>
+  </section>
 
-  
 
-
-  <!-- БЛОК 5: КОНТАКТЫ -->
+  <!-- БЛОК 6: КОНТАКТЫ -->
+  <section id="section-6">
   <div class="section-header">
-    <div class="section-num">5</div>
+    <div class="section-num">6</div>
     <div class="section-title">Ключевые контакты</div>
   </div>
+  <p class="section-intro">Клик по значку — скопировать адрес; клик по адресу — открыть почтовый клиент.</p>
 
   <div class="contacts-grid">
     <div class="contact-card">
       <div class="contact-role">Объявление на сайте ИКН</div>
       <div class="contact-name">Ксения Паниди</div>
-      <div class="contact-email">kpanidi@hse.ru</div>
+      <div class="contact-email-row">
+        <a class="contact-email" href="mailto:kpanidi@hse.ru">kpanidi@hse.ru</a>
+        <button class="copy-btn" type="button" data-copy="kpanidi@hse.ru" aria-label="Скопировать адрес">⧉</button>
+      </div>
     </div>
-    
+    <div class="contact-card">
+      <div class="contact-role">Объявление в управлении аспирантуры</div>
+      <div class="contact-name">Нестерова Юлия Павловна</div>
+      <div class="contact-email-row">
+        <a class="contact-email" href="mailto:ynesterova@hse.ru">ynesterova@hse.ru</a>
+        <button class="copy-btn" type="button" data-copy="ynesterova@hse.ru" aria-label="Скопировать адрес">⧉</button>
+      </div>
+    </div>
     <div class="contact-card">
       <div class="contact-role">Менеджер аспирантской школы</div>
       <div class="contact-name">Башкинцев Дмитрий Николаевич</div>
-      <div class="contact-email">dbashkintsev@hse.ru</div>
+      <div class="contact-email-row">
+        <a class="contact-email" href="mailto:dbashkintsev@hse.ru">dbashkintsev@hse.ru</a>
+        <button class="copy-btn" type="button" data-copy="dbashkintsev@hse.ru" aria-label="Скопировать адрес">⧉</button>
+      </div>
     </div>
     <div class="contact-card">
       <div class="contact-role">Академический директор</div>
       <div class="contact-name">Захаров Денис Геннадьевич</div>
-      <div class="contact-email">dgzakharov@hse.ru</div>
+      <div class="contact-email-row">
+        <a class="contact-email" href="mailto:dgzakharov@hse.ru">dgzakharov@hse.ru</a>
+        <button class="copy-btn" type="button" data-copy="dgzakharov@hse.ru" aria-label="Скопировать адрес">⧉</button>
+      </div>
     </div>
     <div class="contact-card">
-      <div class="contact-role">Документы после предзащиты</div>
+      <div class="contact-role">Документы после предзащиты, техника в аудитории</div>
       <div class="contact-name">Хасанов Рустам</div>
-      <div class="contact-email">rhasanov@hse.ru</div>
+      <div class="contact-email-row">
+        <a class="contact-email" href="mailto:rhasanov@hse.ru">rhasanov@hse.ru</a>
+        <button class="copy-btn" type="button" data-copy="rhasanov@hse.ru" aria-label="Скопировать адрес">⧉</button>
+      </div>
     </div>
-    
+
   </div>
+  </section>
 
 
   <!-- ЧЕКЛИСТ -->
+  <section id="checklist">
   <div class="section-header">
     <div class="section-num">✓</div>
     <div class="section-title">Общий чеклист</div>
   </div>
+  <p class="section-intro">Отмечайте пункты по ходу подготовки — прогресс сохраняется в этом браузере.</p>
 
-  <div class="checklist">
-    <div class="check-item">
+  <div class="checklist-progress">
+    <div class="checklist-bar"><div class="checklist-bar-fill" id="checklist-fill"></div></div>
+    <div class="checklist-count" id="checklist-count">0 / 16</div>
+  </div>
+
+  <div class="checklist" id="checklist-list">
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="dissertation-text">
       <div class="check-box"></div>
       <div><div class="check-label">Полный текст диссертации готов</div></div>
     </div>
-    <div class="check-item">
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="summary-ru-en">
       <div class="check-box"></div>
       <div><div class="check-label">Резюме на русском и английском языках готово</div></div>
     </div>
-    <div class="check-item">
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="publications">
       <div class="check-box"></div>
-      <div><div class="check-label">Минимум 3 публикации в списках А/B/C/D ВШЭ</div><div class="check-sub"></div></div>
+      <div><div class="check-label">Минимум 3 публикации в списках А/B/C/D ВШЭ</div></div>
     </div>
-    <div class="check-item">
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="exam">
       <div class="check-box"></div>
       <div><div class="check-label">Кандидатский экзамен сдан</div></div>
     </div>
-    <div class="check-item">
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="topic-approved">
       <div class="check-box"></div>
       <div><div class="check-label">Тема диссертации утверждена</div></div>
     </div>
-    <div class="check-item">
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="doc-package">
       <div class="check-box"></div>
-      <div><div class="check-label">Пакет документов подготовлен</div><div class="check-sub"></div></div>
+      <div><div class="check-label">Пакет документов подготовлен</div></div>
     </div>
-    <div class="check-item">
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="date-confirmed">
+      <div class="check-box"></div>
+      <div><div class="check-label">Точная дата предзащиты согласована с научным руководителем и АШ</div></div>
+    </div>
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="icn-announcement">
       <div class="check-box"></div>
       <div><div class="check-label">За 10+ дней: объявление на сайте ИКН размещено</div><div class="check-sub">Отправить Ксении Паниди: kpanidi@hse.ru</div></div>
     </div>
-    <div class="check-item">
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="aspirantura-announcement">
       <div class="check-box"></div>
-      <div><div class="check-label">За 10+ дней: уведомление управлению аспирантурой отправлено</div><div class="check-sub">ynesterova@hse.ru</div></div>
+      <div><div class="check-label">За 10+ дней: уведомление управлению аспирантурой отправлено</div><div class="check-sub">Отправить Нестеровой Ю.П.: ynesterova@hse.ru</div></div>
     </div>
-    <div class="check-item">
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="manager-director-notified">
       <div class="check-box"></div>
       <div><div class="check-label">За 10+ дней: менеджер и директор аспирантской школы уведомлены</div></div>
     </div>
-    <div class="check-item">
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="reviewers">
       <div class="check-box"></div>
       <div><div class="check-label">2 рецензента с учёными степенями найдены заблаговременно</div></div>
     </div>
-    <div class="check-item">
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="room-link">
+      <div class="check-box"></div>
+      <div><div class="check-label">Аудитория с техникой забронирована, ссылка на видеоконференцию создана и разослана (для онлайн/смешанного формата)</div></div>
+    </div>
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="quorum">
       <div class="check-box"></div>
       <div><div class="check-label">На заседании присутствуют минимум 5 человек с учёными степенями</div></div>
     </div>
-    <div class="check-item">
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="protocol">
       <div class="check-box"></div>
       <div><div class="check-label">Протокол составлен и подписан председательствующим</div></div>
     </div>
-    <div class="check-item">
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="conclusion">
       <div class="check-box"></div>
       <div><div class="check-label">Заключение организации написано и направлено (в течение 7 дней)</div></div>
     </div>
-    <div class="check-item">
+    <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="application-form">
       <div class="check-box"></div>
       <div><div class="check-label">Заявление и Справка заполнены и переданы в подразделение</div></div>
     </div>
   </div>
 
   <hr class="divider">
+  </section>
 
 </div>
 
@@ -1195,50 +1082,95 @@
   <span style="opacity:.5; font-size:12px; margin-top:6px; display:block">Аспирантская школа по когнитивным наукам · НИУ ВШЭ</span>
 </footer>
 
+<button class="to-top" id="to-top" type="button" aria-label="Наверх">↑</button>
 
+<script>
+(function () {
+  // ---- scroll-spy for quick nav ----
+  var links = Array.prototype.slice.call(document.querySelectorAll('.qn-link'));
+  var sections = links.map(function (l) { return document.getElementById(l.dataset.target); }).filter(Boolean);
 
-<div class="troywell"><template shadowrootmode="open">
-      <style>@import url("chrome-extension://jcmbmadioaobdgfbmbpenhlcppfcahhi/content/styles.css");</style>
-      <div id="troywell" data-v-app=""><div class="content-app"><!----><!----><!----><!----></div></div></template></div><div class="twell-caa"><template shadowrootmode="open">
-    <style>
-    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/caa/styles.css");
-    </style>
-    <div id="twell-caa" data-v-app=""><!----></div></template></div><div class="twell-vpn"><template shadowrootmode="open">
-    <style>
-    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/vpn/styles.css");
-    </style>
-    <div id="twell-vpn" data-v-app=""><div data-v-346d92bb=""><!----></div></div></template></div><div class="twell-caa"><template shadowrootmode="open">
-    <style>
-    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/caa/styles.css");
-    </style>
-    <div id="twell-caa" data-v-app=""><!----></div></template></div><div class="twell-vpn"><template shadowrootmode="open">
-    <style>
-    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/vpn/styles.css");
-    </style>
-    <div id="twell-vpn" data-v-app=""><div data-v-346d92bb=""><!----></div></div></template></div><div class="troywell"><template shadowrootmode="open">
-      <style>@import url("chrome-extension://jcmbmadioaobdgfbmbpenhlcppfcahhi/content/styles.css");</style>
-      <div id="troywell" data-v-app=""><div class="content-app"><!----><!----><!----><!----></div></div></template></div><div class="twell-caa"><template shadowrootmode="open">
-    <style>
-    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/caa/styles.css");
-    </style>
-    <div id="twell-caa" data-v-app=""><!----></div></template></div><div class="twell-vpn"><template shadowrootmode="open">
-    <style>
-    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/vpn/styles.css");
-    </style>
-    <div id="twell-vpn" data-v-app=""><div data-v-346d92bb=""><!----></div></div></template></div><div class="troywell"><template shadowrootmode="open">
-      <style>@import url("chrome-extension://jcmbmadioaobdgfbmbpenhlcppfcahhi/content/styles.css");</style>
-      <div id="troywell" data-v-app=""><div class="content-app"><!----><!----><!----><!----></div></div></template></div><div class="twell-caa"><template shadowrootmode="open">
-    <style>
-    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/caa/styles.css");
-    </style>
-    <div id="twell-caa" data-v-app=""><!----></div></template></div><div class="twell-vpn"><template shadowrootmode="open">
-    <style>
-    @import url("chrome-extension://adlpodnneegcnbophopdmhedicjbcgco/content/vpn/styles.css");
-    </style>
-    <div id="twell-vpn" data-v-app=""><div data-v-346d92bb=""><!----></div></div></template></div><div class="troywell"><template shadowrootmode="open">
-      <style>@import url("chrome-extension://jcmbmadioaobdgfbmbpenhlcppfcahhi/content/styles.css");</style>
-      <div id="troywell" data-v-app=""><div class="content-app"><!----><!----><!----><!----></div></div></template></div><div class="troywell"><template shadowrootmode="open">
-      <style>@import url("chrome-extension://jcmbmadioaobdgfbmbpenhlcppfcahhi/content/styles.css");</style>
-      <div id="troywell" data-v-app=""><div class="content-app"><!----><!----><!----><!----></div></div></template></div></body><div class="troywell"><template shadowrootmode="open">
-      <style>@import url("chrome-extension://jcmbmadioaobdgfbmbpenhlcppfcahhi/content/styles.css");</style>
-      <div id="troywell" data-v-app=""><div class="content-app"><!----><!----><!----><!----></div></div></template></div></html>
+  function setActive(id) {
+    links.forEach(function (l) { l.classList.toggle('active', l.dataset.target === id); });
+  }
+
+  if ('IntersectionObserver' in window && sections.length) {
+    var observer = new IntersectionObserver(function (entries) {
+      var visible = entries.filter(function (e) { return e.isIntersecting; });
+      if (visible.length) {
+        visible.sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+        setActive(visible[0].target.id);
+      }
+    }, { rootMargin: '-56px 0px -70% 0px', threshold: 0 });
+    sections.forEach(function (s) { observer.observe(s); });
+  }
+
+  // ---- back to top ----
+  var toTop = document.getElementById('to-top');
+  var heroHeight = document.querySelector('.hero').offsetHeight;
+  window.addEventListener('scroll', function () {
+    toTop.classList.toggle('visible', window.scrollY > heroHeight);
+  }, { passive: true });
+  toTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  });
+
+  // ---- copy to clipboard ----
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var value = btn.dataset.copy;
+      var done = function () {
+        var original = btn.textContent;
+        btn.textContent = '✓';
+        btn.classList.add('copied');
+        setTimeout(function () { btn.textContent = original; btn.classList.remove('copied'); }, 1400);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).then(done).catch(function () {});
+      }
+    });
+  });
+
+  // ---- interactive checklist with persistence ----
+  var STORAGE_KEY = 'predzashita-checklist-v1';
+  var items = Array.prototype.slice.call(document.querySelectorAll('.check-item'));
+  var fill = document.getElementById('checklist-fill');
+  var count = document.getElementById('checklist-count');
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch (e) { state = {}; }
+
+  function save() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function updateProgress() {
+    var checked = items.filter(function (i) { return i.classList.contains('checked'); }).length;
+    var pct = items.length ? Math.round((checked / items.length) * 100) : 0;
+    fill.style.width = pct + '%';
+    count.textContent = checked + ' / ' + items.length;
+  }
+
+  function toggle(item) {
+    var isChecked = item.classList.toggle('checked');
+    item.setAttribute('aria-checked', isChecked ? 'true' : 'false');
+    state[item.dataset.key] = isChecked;
+    save();
+    updateProgress();
+  }
+
+  items.forEach(function (item) {
+    if (state[item.dataset.key]) {
+      item.classList.add('checked');
+      item.setAttribute('aria-checked', 'true');
+    }
+    item.addEventListener('click', function () { toggle(item); });
+    item.addEventListener('keydown', function (e) {
+      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(item); }
+    });
+  });
+
+  updateProgress();
+})();
+</script>
+
+</body></html>
