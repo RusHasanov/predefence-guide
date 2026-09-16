@@ -36,9 +36,7 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
     * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   }
 
@@ -1060,7 +1058,7 @@
     toTop.classList.toggle('visible', window.scrollY > heroHeight);
   }, { passive: true });
   toTop.addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'auto' });
   });
 
   // ---- copy to clipboard ----
