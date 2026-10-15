@@ -357,6 +357,8 @@
   }
   .timeline-title { font-weight: 500; font-size: 15px; color: var(--text); margin-bottom: 5px; }
   .timeline-desc { font-size: 14px; color: var(--muted); font-weight: 300; }
+  .timeline-desc .chain { margin: 10px 0 12px 20px; padding-left: 4px; }
+  .timeline-desc .chain li { margin: 5px 0; padding-left: 2px; }
 
   /* CONTACT CARDS */
   .contacts-grid {
@@ -885,9 +887,33 @@
 
     <div class="timeline-item">
       <div class="timeline-dot green"></div>
-      <div class="timeline-time">ФИНАЛЬНЫЙ ШАГ</div>
+      <div class="timeline-time">ДАЛЕЕ</div>
       <div class="timeline-title">Подразделение направляет документы на согласование</div>
       <div class="timeline-desc">Заполненный пакет документов подразделение направляет для последующего согласования и утверждения.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot green"></div>
+      <div class="timeline-time">ФИНАЛЬНЫЙ ШАГ · 3 + 7 ДНЕЙ</div>
+      <div class="timeline-title">Пройти цепочку согласования Заключения организации</div>
+      <div class="timeline-desc">
+        Заключение, Приложение (протокол), Справку и Заявление соискатель направляет менеджеру АШ <strong>не позднее чем через 3 календарных дня</strong> после предзащиты. Подписанный пакет должен попасть на утверждение проректору <strong>в течение 7 календарных дней</strong>. Порядок такой:
+        <ol class="chain">
+          <li>Соискатель отправляет пакет менеджеру АШ (Башкинцев Д.Н.) — он проверяет и согласует по почте за срок не больше 3 дней.</li>
+          <li>Менеджер АШ передаёт менеджеру диссертационного совета.</li>
+          <li>Менеджер ДС проверяет и отправляет в Управление аспирантуры и докторантуры (УАД) начальнику отдела координации работы диссоветов.</li>
+          <li>Начальник отдела проверяет и возвращает пакет с замечаниями менеджеру ДС, а тот — соискателю.</li>
+          <li>Соискатель вносит правки, подписывает документы у руководителя подразделения, на базе которого проходила предзащита, и заверяет его подпись в Единой приёмной (в части источников — в Управлении персонала; уточните при подаче).</li>
+          <li>Готовые документы соискатель передаёт начальнику отдела координации работы диссоветов в УАД.</li>
+        </ol>
+        <strong>Если Заключение не представлено проректору в течение 3 месяцев, положительное решение предзащиты теряет силу.</strong> УАД проверяет документы в три инстанции и может не уложиться в срок — начинайте готовить Заключение заранее и сами уточняйте статус.<br><br>
+        <strong>Документы:</strong>
+        <a href="https://drive.google.com/file/d/1MU_EXiL26vY7tBHXxvzA0bYVewIVCmCD/view?usp=drivesdk" target="_blank">Шаги подготовки Заключения организации</a> ·
+        <a href="https://drive.google.com/file/d/1hN6Y-rcmX418_V3GsYyJ2Rol-IBqNg7a/view?usp=drivesdk" target="_blank">Протокол предзащиты (пример)</a> ·
+        <a href="https://drive.google.com/file/d/1naSQhupwJkPV-vsXjtsEDXWAhS1q1xs6/view?usp=drivesdk" target="_blank">Выписка из протокола</a> ·
+        <a href="https://drive.google.com/drive/folders/1FHs0EigsKv3Bs436Wn3nSua4zMiFhkXK?usp=sharing" target="_blank">Вся папка с примерами</a><br>
+        <em>Файлы в папке — примеры; актуальные бланки берите только на <a href="https://aspirantura.hse.ru/predzach/" target="_blank">сайте Аспирантской школы</a>: старые шаблоны в УАД не принимают.</em>
+      </div>
     </div>
 
   </div>
@@ -1040,7 +1066,7 @@
     </div>
     <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="conclusion">
       <div class="check-box"></div>
-      <div><div class="check-label">Заключение организации написано и направлено (в течение 7 дней)</div></div>
+      <div><div class="check-label">Заключение организации написано и направлено менеджеру АШ (в течение 3 дней)</div><div class="check-sub">Подписанный пакет — проректору не позднее 7 дней</div></div>
     </div>
     <div class="check-item" tabindex="0" role="checkbox" aria-checked="false" data-key="application-form">
       <div class="check-box"></div>
